@@ -1,0 +1,54 @@
+image: node:lts-alpine
+
+stages:
+  - validate
+  - build
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
+
+tsc:
+  stage: validate
+  script:
+    - npm run check
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+    - when: never
+
+lint:
+  stage: validate
+  script:
+    - npm run lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+    - when: never
+
+build:
+  stage: build
+  script:
+    - npm run build
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+    - when: never
+
+test:
+  stage: test
+  script:
+    - npm run coverage
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - coverage/junit-report.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+    - when: never

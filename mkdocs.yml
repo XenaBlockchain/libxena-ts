@@ -1,0 +1,67 @@
+site_name: Libnexa TS Documentation
+site_description: libnexa-ts documentation
+site_dir: public
+repo_url: https://gitlab.com/nexa/libnexa-ts
+
+theme:
+  name: material
+  features:
+    - content.code.select
+    - content.code.copy
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  - search
+
+ 
+nav:
+  - Home: index.md
+  - Addresses and Keys:
+    - Addresses: address.md
+    - Using Different Networks: networks.md
+    - Private Keys: privatekey.md
+    - Public Keys: publickey.md
+    - Hierarchically-Derived Keys: hdkeys.md
+  - Payment Handling:
+    - Units Conversion: unit.md
+    - The Transaction Module: transaction.md
+    - Sighash Types: sighashtype.md
+  - Blockchain Internals: 
+    - Scripts: script.md
+    - Block: block.md
+  - Extras:
+    - Crypto: crypto.md
+    - Sign Messages: message.md
+    - Work with Tokens: tokens.md
+    - Examples: examples.md
+  - API Reference: api/index.md
