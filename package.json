@@ -55,7 +55,11 @@
     "nexa",
     "blockchain"
   ],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/nexa/libnexa-ts"
+  },
+  "author": "vgrunner",
   "license": "MIT",
   "dependencies": {
     "bn.js": "^5.2.1",
