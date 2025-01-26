@@ -1,0 +1,22 @@
+{
+  "entryPoints": ["./src/index.ts"],
+  "out": "./docs/api",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-rename-defaults"],
+  "entryFileName": "index",
+  "readme": "none",
+  "indexFormat": "table",
+  "useCodeBlocks": true,
+  "expandParameters": true,
+  "parametersFormat": "table",
+  "interfacePropertiesFormat": "table",
+  "classPropertiesFormat": "table",
+  "enumMembersFormat": "table",
+  "propertyMembersFormat": "table",
+  "disableSources": true,
+  "sort": [
+    "kind",
+    "static-first",
+    "source-order",
+    "enum-value-ascending"
+  ]
+}

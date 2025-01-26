@@ -1,0 +1,88 @@
+{
+  "name": "libnexa-ts",
+  "version": "1.0.0",
+  "description": "A pure and powerful Nexa core library.",
+  "type": "module",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.web.mjs",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "node": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "browser": "./dist/index.web.mjs",
+    "default": "./dist/index.mjs"
+  },
+  "targets": {
+    "main": {
+      "context": "node",
+      "outputFormat": "commonjs",
+      "distDir": "dist",
+      "isLibrary": true,
+      "includeNodeModules": [
+        "lodash-es"
+      ]
+    },
+    "module": {
+      "context": "node",
+      "outputFormat": "esmodule",
+      "distDir": "dist",
+      "isLibrary": true
+    },
+    "browser": {
+      "context": "browser",
+      "outputFormat": "esmodule",
+      "distDir": "dist",
+      "isLibrary": true
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "del-cli ./dist && parcel build",
+    "lint": "eslint .",
+    "test": "vitest run --dir tests",
+    "coverage": "del-cli ./coverage && npm test -- --coverage --reporter=verbose --reporter=junit",
+    "docs": "typedoc"
+  },
+  "keywords": [
+    "nexa",
+    "blockchain"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bn.js": "^5.2.1",
+    "bs58": "^6.0.0",
+    "elliptic": "^6.6.1",
+    "js-big-decimal": "^2.2.0",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.13.3",
+    "@parcel/transformer-typescript-types": "^2.13.3",
+    "@types/bn.js": "^5.1.6",
+    "@types/elliptic": "^6.4.18",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.10.10",
+    "@vitest/coverage-v8": "^3.0.4",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.19.0",
+    "parcel": "^2.13.3",
+    "typedoc": "^0.27.6",
+    "typedoc-plugin-markdown": "^4.4.1",
+    "typedoc-plugin-rename-defaults": "^0.7.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.21.0",
+    "vitest": "^3.0.4"
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
+  }
+}
