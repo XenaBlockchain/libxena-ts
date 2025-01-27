@@ -1,7 +1,10 @@
 # Libnexa TS
 
 [![NPM Package](https://img.shields.io/npm/v/libnexa-ts.svg?style=flat-square)](https://www.npmjs.org/package/libnexa-ts)
-![Coverage Status](https://img.shields.io/badge/coverage-100%25-brightgreen)
+[![Build Status](https://gitlab.com/nexa/libnexa-ts/badges/main/pipeline.svg?key_text=build)](https://gitlab.com/nexa/libnexa-ts/-/pipelines)
+[![Coverage Status](https://gitlab.com/nexa/libnexa-ts/badges/main/coverage.svg)](https://gitlab.com/nexa/libnexa-ts/-/pipelines)
+[![GitLab Release](https://gitlab.com/nexa/libnexa-ts/-/badges/release.svg)](https://gitlab.com/nexa/libnexa-ts/-/releases)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.com/nexa/libnexa-ts/-/blob/main/LICENSE)
 
 **A pure and powerful TypeScript Nexa SDK library.**
 
