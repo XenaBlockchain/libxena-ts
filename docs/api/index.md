@@ -10,7 +10,7 @@
 | ------ | ------ |
 | [AddressType](enumerations/AddressType.md) | - |
 | [GroupIdFlag](enumerations/GroupIdFlag.md) | - |
-| [NFTIdentifier](enumerations/NFTIdentifier.md) | Represent NFT creation identifier in OP_RETURN script |
+| [GroupIdType](enumerations/GroupIdType.md) | Represent Group creation id type in OP_RETURN script |
 | [Opcode](enumerations/Opcode.md) | - |
 | [InputType](enumerations/InputType.md) | - |
 | [OutputType](enumerations/OutputType.md) | - |

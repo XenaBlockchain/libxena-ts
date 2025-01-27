@@ -62,6 +62,6 @@ nav:
   - Extras:
     - Crypto: crypto.md
     - Sign Messages: message.md
-    - Work with Tokens: tokens.md
+    - Groups and Tokens: tokens.md
     - Examples: examples.md
   - API Reference: api/index.md

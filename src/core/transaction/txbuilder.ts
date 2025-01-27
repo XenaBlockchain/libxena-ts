@@ -39,16 +39,16 @@ export default class TransactionBuilder {
    * Can receive, as output information, the output of nexad's `listunspent` command,
    * with a slightly fancier format recognized by this sdk:
    *
-   * ```
+   * ```json
    * {
-   *  outpoint: 'fcf7d303d67f19568cf4ab72d36d583baac461e0f62f289b3dff68da96c2117c'
-   *  scriptPubKey: '005114891c4b19cbcaefc31770a938ebd6b1fafabb1be6',
+   *  outpoint: "fcf7d303d67f19568cf4ab72d36d583baac461e0f62f289b3dff68da96c2117c"
+   *  scriptPubKey: "005114891c4b19cbcaefc31770a938ebd6b1fafabb1be6",
    *  satoshis: 181998351
    * }
    * // or alternative:
    * {
-   *  outpoint: 'fcf7d303d67f19568cf4ab72d36d583baac461e0f62f289b3dff68da96c2117c'
-   *  address: 'nexa:nqtsq5g53ywykxwtethux9ms4yuwh443ltatkxlx3s5pnvwh',
+   *  outpoint: "fcf7d303d67f19568cf4ab72d36d583baac461e0f62f289b3dff68da96c2117c"
+   *  address: "nexa:nqtsq5g53ywykxwtethux9ms4yuwh443ltatkxlx3s5pnvwh",
    *  amount: 1819983.51
    *  groupId: <token address if relevant>
    *  groupAmount: <token amount if relevant>

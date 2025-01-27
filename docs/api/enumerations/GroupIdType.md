@@ -2,11 +2,11 @@
 
 ***
 
-[libnexa-ts](../index.md) / NFTIdentifier
+[libnexa-ts](../index.md) / GroupIdType
 
-# Enumeration: NFTIdentifier
+# Enumeration: GroupIdType
 
-Represent NFT creation identifier in OP_RETURN script
+Represent Group creation id type in OP_RETURN script
 
 ## Enumeration Members
 

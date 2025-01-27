@@ -20,9 +20,9 @@ export enum GroupIdFlag {
 }
 
 /**
- * Represent NFT creation identifier in OP_RETURN script
+ * Represent Group creation id type in OP_RETURN script
  */
-export enum NFTIdentifier {
+export enum GroupIdType {
   /** Legacy token */
   LEGACY = 88888888,
   /** Token */
