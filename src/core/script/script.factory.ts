@@ -10,7 +10,7 @@ import BufferReader from "../../encoding/bufferreader";
 import BufferUtils from "../../utils/buffer.utils";
 import Signature from "../../crypto/signature";
 import { AddressType } from "../address/address-formatter";
-import GroupToken, { NFTIdentifier } from "../grouptoken";
+import GroupToken, { GroupIdType } from "../grouptoken";
 
 /**
  * A factory class for creating scripts with predefined configurations and flags.
@@ -193,7 +193,7 @@ export default class ScriptFactory {
 
     let s = Script.empty()
       .add(Opcode.OP_RETURN)
-      .add(BN.fromNumber(NFTIdentifier.LEGACY).toScriptNumBuffer())
+      .add(BN.fromNumber(GroupIdType.LEGACY).toScriptNumBuffer())
       .add(Buffer.from(ticker))
       .add(Buffer.from(name));
 
@@ -236,7 +236,7 @@ export default class ScriptFactory {
 
     return Script.empty()
       .add(Opcode.OP_RETURN)
-      .add(BN.fromNumber(NFTIdentifier.NRC1).toScriptNumBuffer())
+      .add(BN.fromNumber(GroupIdType.NRC1).toScriptNumBuffer())
       .add(Buffer.from(ticker))
       .add(Buffer.from(name))
       .add(Buffer.from(zipURL))
@@ -265,7 +265,7 @@ export default class ScriptFactory {
 
     return Script.empty()
       .add(Opcode.OP_RETURN)
-      .add(BN.fromNumber(NFTIdentifier.NRC2).toScriptNumBuffer())
+      .add(BN.fromNumber(GroupIdType.NRC2).toScriptNumBuffer())
       .add(Buffer.from(ticker))
       .add(Buffer.from(name))
       .add(Buffer.from(zipURL))
@@ -290,7 +290,7 @@ export default class ScriptFactory {
 
     return Script.empty()
       .add(Opcode.OP_RETURN)
-      .add(BN.fromNumber(NFTIdentifier.NRC3).toScriptNumBuffer())
+      .add(BN.fromNumber(GroupIdType.NRC3).toScriptNumBuffer())
       .add(Buffer.from(zipURL))
       .add(Buffer.from(zipHash, 'hex').reverse());
   }

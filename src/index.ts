@@ -167,4 +167,4 @@ export { default as TxSignature } from "./core/transaction/txsignature";
 export { default as TransactionBuilder } from "./core/transaction/txbuilder";
 
 export { default as Message } from "./core/message";
-export { default as GroupToken, GroupIdFlag, NFTIdentifier } from "./core/grouptoken";
+export { default as GroupToken, GroupIdFlag, GroupIdType } from "./core/grouptoken";

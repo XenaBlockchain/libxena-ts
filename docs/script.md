@@ -72,7 +72,7 @@ assert(script.toString() === 'OP_RETURN 14 0x68656c6c6f20776f726c64212121');
 
 ### Token Description
 
-There are multiple token descriptions (OP_RETURN Identifiers) the library supports. See the `ScriptFactory` API Referece below and the official [Nexa Token Description Document](https://spec.nexa.org/tokens/tokenDescription/) for a technical overview and detailed breakdown.
+There are multiple token descriptions (OP_RETURN Identifiers) the library supports. See the [Groups and Tokens](tokens.md) document for a technical overview and detailed breakdown.
 
 ### Custom Scripts
 
