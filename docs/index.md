@@ -4,7 +4,7 @@ Nexa is a powerful new peer-to-peer platform for the next generation of financia
 
 The decentralized nature of the Nexa network allows for highly resilient nexa infrastructure, and the developer community needs reliable, open-source tools to implement nexa apps and services.
 
-Libnexa-ts provides a reliable API for TypeScript/JavaScript apps that need to interface with the Nexa network.
+Libnexa-ts provides a reliable SDK for TypeScript/JavaScript apps that need to interface with the Nexa network.
 
 ## Get Started
 
