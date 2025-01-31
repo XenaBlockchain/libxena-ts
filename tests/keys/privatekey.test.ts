@@ -390,14 +390,14 @@ describe('PrivateKey', () => {
     });
   });
 
-  // test('creates an address as expected from WIF, livenet', () => {
-  //   let privkey = new PrivateKey('5J2NYGstJg7aJQEqNwYp4enG5BSfFdKXVTtBLvHicnRGD5kjxi6');
-  //   privkey.publicKey.toAddress().toString().should.equal('bitcoincash:qqtv79nz6p246lxt6ja526nhmgdk5qtn9gdc6kt4us');
-  // });
+  test('creates an address as expected from WIF, mainnet', () => {
+    let privkey = PrivateKey.from('6Bsmpv2bukMy3hbFUbBUvv54TjG7SVFuyezv62Nu62voVRGWYghC');
+    expect(privkey.toAddress().toString()).toBe('nexa:nqtsq5g5ka5ta9v3ad0a844zs2yd2n4ckq760lc4eyl9mrq2');
+  });
 
-  // test('creates an address as expected from WIF, testnet', () => {
-  //   let privkey = new PrivateKey('92VYMmwFLXRwXn5688edGxYYgMFsc3fUXYhGp17WocQhU6zG1kd');
-  //   privkey.publicKey.toAddress().toString().should.equal('bchtest:qpv7q8crqr6872wprm7626kzkt4gafx8gc2x9ecrpr');
-  // });
+  test('creates an address as expected from WIF, testnet', () => {
+    let privkey = PrivateKey.from(wifTestnet);
+    expect(privkey.toAddress().toString()).toBe('nexatest:nqtsq5g5n39vgmhnhfxwcwgxptfp9u9neu99c203jj2vz066');
+  });
 
 });

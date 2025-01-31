@@ -1,5 +1,5 @@
 import { isNil, isNumber, isObject, isString } from "lodash-es";
-import type { HDPublicKeyBuffers, HDPublicKeyDto, HDPublicKeyMinimalDto, IHDPrivateKey, IHDPublicKey, IPublicKey } from "../common/interfaces";
+import type { HDPublicKeyBuffers, HDPublicKeyDto, HDPublicKeyMinimalDto, IHDPrivateKey, IHDPublicKey } from "../common/interfaces";
 import HDKeyUtils from "./hdkey.utils";
 import { networks } from "../core/network/network-manager";
 import BufferUtils from "../utils/buffer.utils";
@@ -11,6 +11,8 @@ import PublicKey from "./publickey";
 import Hash from "../crypto/hash";
 import BN from "../crypto/bn.extension";
 import Point from "../crypto/point";
+import { AddressType } from "../core/address/address-formatter";
+import Address from "../core/address/address";
 
 export default class HDPublicKey implements IHDPublicKey {
 
@@ -20,7 +22,7 @@ export default class HDPublicKey implements IHDPublicKey {
   private static readonly ChecksumStart = this.PublicKeyEnd;
   private static readonly ChecksumEnd = this.ChecksumStart + HDKeyUtils.CheckSumSize;
 
-  readonly publicKey!: IPublicKey;
+  readonly publicKey!: PublicKey;
   readonly network!: Network;
   readonly depth!: number;
   readonly parentFingerPrint!: Buffer;
@@ -47,7 +49,7 @@ export default class HDPublicKey implements IHDPublicKey {
 
     let params = HDPublicKey._classifyArgument(arg);
 
-    this.publicKey = params.publicKey;
+    this.publicKey = params.publicKey as PublicKey;
     this.network = params.network;
     this.depth = params.depth;
     this.parentFingerPrint = params.parentFingerPrint;
@@ -183,6 +185,18 @@ export default class HDPublicKey implements IHDPublicKey {
       checksum: BufferUtils.integerFromBuffer(this.checksum),
       xpubkey: this.xpubkey
     };
+  }
+
+  /**
+   * Will return an address for the hdpubkey with its defined network
+   * 
+   * @param type - optional parameter specifying the desired type of the address.
+   *  default {@link AddressType.PayToScriptTemplate}
+   * 
+   * @returns An address generated from the hd public key
+   */
+  public toAddress(type = AddressType.PayToScriptTemplate): Address {
+    return Address.fromPublicKey(this.publicKey, this.network, type);
   }
 
   /**

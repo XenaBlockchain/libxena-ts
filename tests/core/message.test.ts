@@ -91,7 +91,7 @@ describe('Message', () => {
     let privateKey = PrivateKey.from('2C4FDQQmtXuwGMDCeUnUrDbqoHjzDEVrdSbjWRdZzZLYkugNq2y');
     let message = new Message('This is an example of a signed message.');
     let signature = message.sign(privateKey);
-    let verified = message.verify(Address.fromPublicKey(privateKey.publicKey), signature);
+    let verified = message.verify(privateKey.toAddress(), signature);
     expect(verified).toBe(true);
   });
 

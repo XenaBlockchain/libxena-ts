@@ -8,7 +8,7 @@ To be able to receive nexa or token an address is needed, but in order to spend 
 
 ```ts
 let privateKey = new PrivateKey();
-let address = Address.fromPublicKey(privateKey.publicKey);
+let address = privateKey.toAddress();
 >>`Address {
   data: <Buffer 17 00 51 14 78 ff c3 f7 ff de 35 a7 cd a6 ab 1a 1a e5 5c a4 9e 1c f7 de>,
   network: Network {
@@ -50,9 +50,12 @@ let publicKey = privateKey.publicKey;
 
 // Create a P2PKH address from a public key
 let address = Address.fromPublicKey(publicKey, undefined, AddressType.PayToPublicKeyHash);
-// default network is mainnet
+// default network is mainnetm
 
 address.toString()
+>>`nexa:qpj354de53f86z26yyl969dxlzpts7x655u47e6e5a`
+// or
+let address = privateKey.toAddress(AddressType.PayToPublicKeyHash);
 >>`nexa:qpj354de53f86z26yyl969dxlzpts7x655u47e6e5a`
 
 // Create a P2ST address from a public key
@@ -60,6 +63,9 @@ let address = Address.fromPublicKey(publicKey, 'mainnet', AddressType.PayToScrip
 // AddressType.PayToScriptTemplate is the default type
 
 address.toString()
+>>`nexa:nqtsq5g5m7c8a2pdrszrze5f9pqdqwfckf483nmt45hkzyyh`
+//or
+let address = privateKey.toAddress(); // default AddressType.PayToScriptTemplate
 >>`nexa:nqtsq5g5m7c8a2pdrszrze5f9pqdqwfckf483nmt45hkzyyh`
 
 // Create a P2ST address from a public key on testnet

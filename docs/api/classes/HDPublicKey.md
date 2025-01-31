@@ -42,7 +42,7 @@ See https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
 | Property | Modifier | Type |
 | ------ | ------ | ------ |
-| <a id="publickey"></a> `publicKey` | `readonly` | [`IPublicKey`](../interfaces/IPublicKey.md) |
+| <a id="publickey"></a> `publicKey` | `readonly` | [`PublicKey`](PublicKey.md) |
 | <a id="network"></a> `network` | `readonly` | [`Network`](Network.md) |
 | <a id="depth"></a> `depth` | `readonly` | `number` |
 | <a id="parentfingerprint"></a> `parentFingerPrint` | `readonly` | `Buffer` |
@@ -204,6 +204,28 @@ Returns a plain JavaScript object with information to reconstruct a key.
 #### Returns
 
 [`HDPublicKeyDto`](../interfaces/HDPublicKeyDto.md)
+
+***
+
+### toAddress()
+
+```ts
+toAddress(type: AddressType): Address
+```
+
+Will return an address for the hdpubkey with its defined network
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `type` | [`AddressType`](../enumerations/AddressType.md) | `AddressType.PayToScriptTemplate` | optional parameter specifying the desired type of the address. default [AddressType.PayToScriptTemplate](../enumerations/AddressType.md#paytoscripttemplate) |
+
+#### Returns
+
+[`Address`](Address.md)
+
+An address generated from the hd public key
 
 ***
 

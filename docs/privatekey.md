@@ -33,6 +33,8 @@ let publicKey = privateKey.toPublicKey();
 let publicKey = privateKey.publicKey;
 
 let address = Address.fromPublicKey(publicKey, Networks.mainnet);
+// or 
+let address = privateKey.toAddress();
 ```
 
 ## Validating a Private Key

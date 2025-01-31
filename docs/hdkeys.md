@@ -22,10 +22,14 @@ let derivedByNumber = hdPrivateKey.deriveChild(1).deriveChild(2, true);
 let derivedByArgument = hdPrivateKey.deriveChild("m/1/2'");
 assert(derivedByNumber.xprivkey === derivedByArgument.xprivkey);
 
-let address = Address.fromPublicKey(derived.publicKey);
+let address = Address.fromPublicKey(derivedByNumber.publicKey);
 
 // obtain HDPublicKey
-let hdPublicKey = hdPrivateKey.hdPublicKey;
+let hdPublicKey = derivedByNumber.hdPublicKey;
+
+let address2 = hdPublicKey.toAddress();
+
+assert(address.toString() === address2.toString()); // true
 ```
 
 ## HDPublicKey
@@ -41,8 +45,13 @@ try {
   console.log("Can't generate a public key without an hd private key");
 }
 
-let address = Address.fromPublicKey(hdPublicKey.publicKey, Networks.mainnet);
-let derivedAddress = Address.fromPublicKey(hdPublicKey.deriveChild(100).publicKey, Networks.testnet);
+let address = Address.fromPublicKey(hdPublicKey.publicKey);
+let derivedAddress = Address.fromPublicKey(hdPublicKey.deriveChild(100).publicKey);
+
+// same as 
+
+let address = hdPublicKey.toAddress();
+let derivedAddress = hdPublicKey.deriveChild(100).toAddress();
 ```
 
 ## API Reference

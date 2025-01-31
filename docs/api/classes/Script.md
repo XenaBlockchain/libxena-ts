@@ -466,11 +466,27 @@ true if this is a valid standard OP_RETURN output
 
 ***
 
+### isTokenDescriptionOut()
+
+```ts
+isTokenDescriptionOut(): boolean
+```
+
+#### Returns
+
+`boolean`
+
+true if this is a valid Token Description OP_RETURN output
+
+***
+
 ### getPublicKey()
 
 ```ts
 getPublicKey(): Buffer
 ```
+
+Will retrieve the Public Key buffer from p2pkt/p2pkh input scriptSig
 
 #### Returns
 
@@ -484,6 +500,8 @@ getPublicKey(): Buffer
 getPublicKeyHash(): Buffer
 ```
 
+Will retrieve the Public Key Hash buffer from p2pkh output scriptPubKey
+
 #### Returns
 
 `Buffer`
@@ -496,9 +514,13 @@ getPublicKeyHash(): Buffer
 getTemplateHash(): Buffer | OP_TRUE
 ```
 
+Will retrieve the Template Hash from p2pkt/p2st output scriptPubKey
+
 #### Returns
 
 `Buffer` \| [`OP_TRUE`](../enumerations/Opcode.md#op_true)
+
+OP_1 if its p2pkt, otherwise the template hash buffer
 
 ***
 
@@ -508,6 +530,28 @@ getTemplateHash(): Buffer | OP_TRUE
 getConstraintHash(): Buffer | OP_FALSE
 ```
 
+Will retrieve the Constraint Hash from p2pkt/p2st output scriptPubKey
+
 #### Returns
 
 `Buffer` \| [`OP_FALSE`](../enumerations/Opcode.md#op_false)
+
+The constraint hash buffer, or OP_FALSE if not included
+
+***
+
+### getGroupIdType()
+
+```ts
+getGroupIdType(): number
+```
+
+Will retrieve the Group Identifier number from Token Description OP_RETURN output
+
+#### Returns
+
+`number`
+
+#### Remarks
+
+This method doesn't check if the group id number is fit to NRC1/NRC2 etc.

@@ -233,4 +233,16 @@ describe('HDPublicKey interface', () => {
       expect(valid).toBe(false);
     });
   });
+
+  describe("toAddress", () => {
+    test('creates an address as expected from xpubkey, mainnet', () => {
+      let hdpubkey = HDPublicKey.fromString(xpubkey);
+      expect(hdpubkey.toAddress().toString()).toBe('nexa:nqtsq5g5xgvd78cxu3cwktl2u595ndk9ewfhdztjdz4at95p');
+    });
+  
+    test('creates an address as expected from xpubkey, testnet', () => {
+      let hdpubkey = HDPublicKey.fromString(xpubkeyTestnet);
+      expect(hdpubkey.toAddress().toString()).toBe('nexatest:nqtsq5g5lvjfd4438fr7zmzu6w43wn4t9mn3et35qc94rm4h');
+    });
+  });
 });

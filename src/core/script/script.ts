@@ -1,4 +1,4 @@
-import { isArray, isObject, isString, isUndefined } from "lodash-es";
+import { inRange, isArray, isObject, isString, isUndefined } from "lodash-es";
 import type { IScript, ScriptChunk } from "../../common/interfaces";
 import BufferUtils from "../../utils/buffer.utils";
 import ValidationUtils from "../../utils/validation.utils";
@@ -646,16 +646,38 @@ export default class Script implements IScript {
     return script2.isPushOnly();
   }
 
+  /**
+   * @returns true if this is a valid Token Description OP_RETURN output
+   */
+  public isTokenDescriptionOut(): boolean {
+    let step1 = inRange(this.chunks.length, 2, 8) &&
+      this.chunks[0].opcodenum === Opcode.OP_RETURN &&
+      this.chunks[1].len === 4;
+    
+    return step1 && new Script({chunks: this.chunks.slice(1)}).isPushOnly();
+  }
+
+  /**
+   * Will retrieve the Public Key buffer from p2pkt/p2pkh input scriptSig
+   */
   public getPublicKey(): Buffer {
     ValidationUtils.validateState(this.isPublicKeyHashIn() || this.isPublicKeyTemplateIn(), "Can't retrieve PublicKey from a non-PKT or non-PKH input");
     return this.isPublicKeyHashIn() ? this.chunks[1].buf! : Script.fromBuffer(this.chunks[0].buf!).chunks[0].buf!;
   }
 
+  /**
+   * Will retrieve the Public Key Hash buffer from p2pkh output scriptPubKey
+   */
   public getPublicKeyHash(): Buffer {
     ValidationUtils.validateState(this.isPublicKeyHashOut(), "Can't retrieve PublicKeyHash from a non-PKH output");
     return this.chunks[2].buf!;
   }
 
+  /**
+   * Will retrieve the Template Hash from p2pkt/p2st output scriptPubKey
+   * 
+   * @returns OP_1 if its p2pkt, otherwise the template hash buffer
+   */
   public getTemplateHash(): Buffer | Opcode.OP_1 {
     ValidationUtils.validateState(this.isPublicKeyTemplateOut() || this.isScriptTemplateOut(), "Can't retrieve TemplateHash from a non-PST output");
     if (this.isPublicKeyTemplateOut()) {
@@ -665,6 +687,11 @@ export default class Script implements IScript {
     return hasGroup ? this.chunks[2].buf! : this.chunks[1].buf!;
   }
   
+  /**
+   * Will retrieve the Constraint Hash from p2pkt/p2st output scriptPubKey
+   * 
+   * @returns The constraint hash buffer, or OP_FALSE if not included
+   */
   public getConstraintHash(): Buffer | Opcode.OP_FALSE {
     ValidationUtils.validateState(this.isPublicKeyTemplateOut() || this.isScriptTemplateOut(), "Can't retrieve ConstraintHash from a non-PST output");
     let hasGroup = this.chunks[0].opcodenum !== Opcode.OP_0;
@@ -673,5 +700,15 @@ export default class Script implements IScript {
       return this.chunks[constraintIndex].buf!;
     }
     return this.chunks[constraintIndex].opcodenum === Opcode.OP_FALSE ? Opcode.OP_FALSE : this.chunks[constraintIndex].buf!;
+  }
+
+  /**
+   * Will retrieve the Group Identifier number from Token Description OP_RETURN output
+   * 
+   * @remarks This method doesn't check if the group id number is fit to NRC1/NRC2 etc. 
+   */
+  public getGroupIdType(): number {
+    ValidationUtils.validateState(this.isTokenDescriptionOut(), "Can't retrieve GroupIdType from a non Token Description output");
+    return BN.fromScriptNumBuffer(this.chunks[1].buf!).toNumber();
   }
 }
