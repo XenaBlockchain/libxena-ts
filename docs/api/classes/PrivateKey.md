@@ -231,6 +231,28 @@ Helper to instantiate PrivateKey from different kinds of arguments.
 
 ***
 
+### toAddress()
+
+```ts
+toAddress(type: AddressType): Address
+```
+
+Will return an address for the private key with its defined network
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `type` | [`AddressType`](../enumerations/AddressType.md) | `AddressType.PayToScriptTemplate` | optional parameter specifying the desired type of the address. default [AddressType.PayToScriptTemplate](../enumerations/AddressType.md#paytoscripttemplate) |
+
+#### Returns
+
+[`Address`](Address.md)
+
+An address generated from the private key
+
+***
+
 ### toString()
 
 ```ts

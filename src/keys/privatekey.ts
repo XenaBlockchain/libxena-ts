@@ -10,6 +10,8 @@ import Point from "../crypto/point";
 import Base58Check from "../encoding/base58check";
 import ValidationUtils from "../utils/validation.utils";
 import PublicKey from "./publickey";
+import Address from "../core/address/address";
+import { AddressType } from "../core/address/address-formatter";
 
 export type PrivateKeyVariants = BN | string | Bufferish | PrivateKey | IPrivateKey | PrivateKeyDto | null;
 
@@ -72,6 +74,18 @@ export default class PrivateKey implements IPrivateKey {
 
   public get publicKey(): PublicKey {
     return this.toPublicKey();
+  }
+
+  /**
+   * Will return an address for the private key with its defined network
+   * 
+   * @param type - optional parameter specifying the desired type of the address.
+   *  default {@link AddressType.PayToScriptTemplate}
+   * 
+   * @returns An address generated from the private key
+   */
+  public toAddress(type = AddressType.PayToScriptTemplate): Address {
+    return Address.fromPublicKey(this.publicKey, this.network, type);
   }
 
   /**

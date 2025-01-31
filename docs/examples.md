@@ -25,7 +25,7 @@ When using this library in an ESM-based project, it is recommended to import onl
 import libnexa from 'libnexa-ts';
 
 const privateKey = new libnexa.keys.PrivateKey();
-const address = libnexa.Address.fromPublicKey(privateKey.publicKey);
+const address = privateKey.toAddress();
 
 console.log(address.toString());
 // Output: `nexa:nqtsq5g5y97dr67dykjspxrnnllp39lcvpzdfre0dp3zuqey`
@@ -36,7 +36,7 @@ console.log(address.toString());
 import { Address, PrivateKey } from 'libnexa-ts';
 
 const privateKey = new PrivateKey();
-const address = Address.fromPublicKey(privateKey.publicKey);
+const address = privateKey.toAddress();
 
 console.log(address.toString());
 // Output: `nexa:nqtsq5g5y97dr67dykjspxrnnllp39lcvpzdfre0dp3zuqey`
@@ -48,7 +48,7 @@ console.log(address.toString());
 const libnexa = require('libnexa-ts');
 
 const privateKey = new libnexa.PrivateKey();
-const address = libnexa.Address.fromPublicKey(privateKey.publicKey);
+const address = privateKey.toAddress();
 
 console.log(address.toString());
 // Output: `nexa:nqtsq5g5y97dr67dykjspxrnnllp39lcvpzdfre0dp3zuqey`
@@ -75,8 +75,11 @@ const mnemonic = Bip39.generateMnemonic()
 let seed = Bip39.mnemonicToSeedSync(mnemonic);
 let masterKey = HDPrivateKey.fromSeed(seed);
 let data =  masterKey.deriveChild(44, true).deriveChild(29223, true);
-let account = data.deriveChild(0, false);
+let account = data.deriveChild(0, true);
 
+let address = account.hdPublicKey.toAddress().toString();
+>>`nexa:nqtsq5g5p8cw78kteduqsvzulqmll5pe4ezgcc74vncrlvmw`
+// same as
 let address = Address.fromPublicKey(account.publicKey).toString();
 >>`nexa:nqtsq5g5p8cw78kteduqsvzulqmll5pe4ezgcc74vncrlvmw`
 ```
@@ -87,7 +90,7 @@ The Wallet Import Format is a standardized way of representing private keys as a
 let wif = '6J6fqYmE6yr97naoJXEqzWuKiKKbngKm9CPxaSj9YTfRPLRGn38A';
 
 let privkey = PrivateKey.from(wif);
-let address = Address.fromPublicKey(privkey.publicKey).toString();
+let address = privkey.toAddress().toString();
 >>`nexa:nqtsq5g5r4av5a20rcp4zx5d5q4uhndshc49h9q3s4tcppn7`
 ```
 
@@ -123,7 +126,7 @@ npm install @vgrunner/electrum-cash
 ```ts
 // From private key
 // assume we have private key with utxos
-let address = Address.fromPublicKey(myPrivKey.publicKey).toString();
+let address = myPrivKey.toAddress().toString();
 
 // Create a change address
 let changePrivateKey = new PrivateKey();

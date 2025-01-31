@@ -6,6 +6,7 @@ import PublicKey from "../../../src/keys/publickey";
 import Signature from "../../../src/crypto/signature";
 import Hash from "../../../src/crypto/hash";
 import BufferReader from "../../../src/encoding/bufferreader";
+import { GroupIdType } from "../../../src";
 
 
 describe('Script', () => {
@@ -356,6 +357,46 @@ describe('Script', () => {
       let buf =  Buffer.alloc(221);
       buf.fill(0);
       expect(new Script('OP_RETURN OP_PUSHDATA1 221 0x' + buf.toString('hex')).isDataOut()).toBe(false);
+    });
+  });
+
+  describe('#isTokenDescriptionOut', () => {
+
+    test('validates wrong length', () => {
+      let s = new Script('OP_RETURN');
+      expect(s.isTokenDescriptionOut()).toBe(false);
+
+      s = ScriptFactory.buildTokenDescriptionLegacy("a", "b", "https://google.com/", "ab12ab1ab1ab2a3a3b21", 6);
+      s.add(Buffer.from('hello'));
+      expect(s.isTokenDescriptionOut()).toBe(false);
+    });
+
+    test('validates that this wrong identifier OP_RETURN is not token description', () => {
+      expect(Script.fromASM('OP_RETURN 026d02 0568656c6c6f').isTokenDescriptionOut()).toBe(false);
+    });
+
+    test('validates that these correct OP_RETURN descriptions', () => {
+      let s = ScriptFactory.buildTokenDescriptionLegacy("abc", "abc", "https://google.com/", "ab12ab1ab1ab2a3a3b21", 6);
+      expect(s.isTokenDescriptionOut()).toBe(true);
+
+      s = ScriptFactory.buildTokenDescription("abc", "abc", "https://google.com/", "ab12ab1ab1ab2a3a3b21", 6);
+      expect(s.isTokenDescriptionOut()).toBe(true);
+
+      s = ScriptFactory.buildNFTCollectionDescription("abc", "abc", "https://google.com/", "ab12ab1ab1ab2a3a3b21");
+      expect(s.isTokenDescriptionOut()).toBe(true);
+
+      s = ScriptFactory.buildNFTDescription("https://google.com/", "ab12ab1ab1ab2a3a3b21");
+      expect(s.isTokenDescriptionOut()).toBe(true);
+    });
+
+    test('validates that is not token description op_return', () => {
+      let buf =  Buffer.alloc(40);
+      buf.fill(0);
+      expect(new Script('OP_CHECKMULTISIG 40 0x' + buf.toString('hex')).isTokenDescriptionOut()).toBe(false);
+    });
+
+    test('validates that this OP_RETURN is not a valid token description pushes', () => {
+      expect(new Script('OP_RETURN 026d0206 OP_NOP 1 0x01').isTokenDescriptionOut()).toBe(false);
     });
   });
 
@@ -788,6 +829,28 @@ describe('Script', () => {
     test('should throw on non pst output script', () => {
       let output = ScriptFactory.buildPublicKeyHashOut(publicKey);
       expect(() => output.getTemplateHash()).toThrow("Can't retrieve TemplateHash from a non-PST output");
+    });
+  });
+
+  describe('#getGroupIdType', () => {
+    test('should throw on non token desc script', () => {
+      let publicKey = PublicKey.fromString('02371b6955629ea6fd014b9e14612e72de2729d33ff26ad20b9e7c558c6a611221');
+      let output = ScriptFactory.buildPublicKeyHashOut(publicKey);
+      expect(() => output.getGroupIdType()).toThrow("Can't retrieve GroupIdType from a non Token Description output");
+    });
+
+    test('should return the group id type for known token description scripts', () => {
+      let s = ScriptFactory.buildTokenDescriptionLegacy("abc", "abc", "https://google.com/", "ab12ab1ab1ab2a3a3b21", 6);
+      expect(s.getGroupIdType()).toBe(GroupIdType.LEGACY);
+
+      s = ScriptFactory.buildTokenDescription("abc", "abc", "https://google.com/", "ab12ab1ab1ab2a3a3b21", 6);
+      expect(s.getGroupIdType()).toBe(GroupIdType.NRC1);
+
+      s = ScriptFactory.buildNFTCollectionDescription("abc", "abc", "https://google.com/", "ab12ab1ab1ab2a3a3b21");
+      expect(s.getGroupIdType()).toBe(GroupIdType.NRC2);
+
+      s = ScriptFactory.buildNFTDescription("https://google.com/", "ab12ab1ab1ab2a3a3b21");
+      expect(s.getGroupIdType()).toBe(GroupIdType.NRC3);
     });
   });
 

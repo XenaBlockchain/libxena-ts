@@ -384,7 +384,7 @@ isGroupIdentifierAddress(): boolean
 
 `boolean`
 
-true if an address is of pay to grouped template type
+true if an address is a group token address
 
 ***
 

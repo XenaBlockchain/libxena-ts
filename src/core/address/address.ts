@@ -172,7 +172,7 @@ export default class Address {
   }
 
   /**
-   * @return true if an address is of pay to grouped template type
+   * @return true if an address is a group token address
    */
   public isGroupIdentifierAddress(): boolean {
     return this.type === AddressType.GroupIdAddress;
