@@ -92,6 +92,32 @@ the subgroup id buffer
 
 ***
 
+### getParentGroupId()
+
+```ts
+static getParentGroupId(subgroup: string | Buffer | Address): Buffer
+```
+
+Extract the parent group from the provided subgroup.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `subgroup` | `string` \| `Buffer` \| [`Address`](Address.md) | the subgroup address or data buffer |
+
+#### Returns
+
+`Buffer`
+
+the GroupId buffer
+
+#### Remarks
+
+If the input is a group but not subgroup, the group itself return.
+
+***
+
 ### getAmountBuffer()
 
 ```ts

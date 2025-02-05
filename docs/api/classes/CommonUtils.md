@@ -23,7 +23,7 @@ new CommonUtils(): CommonUtils
 ### isHexa()
 
 ```ts
-static isHexa(value: string): boolean
+static isHexa(value: unknown): boolean
 ```
 
 Determines whether a string contains only hexadecimal values
@@ -32,7 +32,7 @@ Determines whether a string contains only hexadecimal values
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `value` | `string` |  |
+| `value` | `unknown` |  |
 
 #### Returns
 

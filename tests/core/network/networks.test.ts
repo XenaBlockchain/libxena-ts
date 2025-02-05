@@ -102,7 +102,7 @@ describe('Network and NetworkManager', () => {
   test('tests only for the specified key', () => {
     expect(networks.get(0x6f, 'pubkeyhash')).toEqual(networks.testnet);
     expect(networks.get(0x6f, 'privatekey')).not.toBeDefined();
-    expect(networks.get(0x19, 'pubkeyhash')).toEqual(networks.livenet); // eslint-disable-line @typescript-eslint/no-deprecated
+    expect(networks.get(0x19, 'pubkeyhash')).toEqual(networks.livenet);
     expect(networks.get(0x19, 'privatekey')).not.toBeDefined();
 
     expect(networks.get(0x72271221, 'networkMagic')).toEqual(networks.mainnet);

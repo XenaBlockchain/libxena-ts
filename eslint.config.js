@@ -65,7 +65,8 @@ export default [
     files: ['tests/**/*'], // Specific to test files
     rules: {
       '@typescript-eslint/no-unused-expressions': 'off',
-      '@typescript-eslint/no-explicit-any': 'off'
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-deprecated': 'off',
     },
   },
 ]
