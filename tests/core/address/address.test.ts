@@ -1,7 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { Address, AddressType, Opcode, PublicKey, Script } from "../../../src";
 import { networks } from "../../../src/core/network/network-manager";
-import BufferUtils from "../../../src/utils/buffer.utils";
 
 describe('Address', () => {
 
@@ -199,12 +198,12 @@ describe('Address', () => {
 
     test('should error because of incorrect format for script template', () => {
       expect(() => Address.fromScriptTemplate('somestring' as any, Opcode.OP_FALSE)).toThrow('templateHash supplied is not a hash buffer or well-known OP_1.');
-      expect(() => Address.fromScriptTemplate('somestring' as any, BufferUtils.emptyBuffer(20))).toThrow('templateHash supplied is not a hash buffer or well-known OP_1.');
+      expect(() => Address.fromScriptTemplate('somestring' as any, Buffer.alloc(20))).toThrow('templateHash supplied is not a hash buffer or well-known OP_1.');
       expect(() => Address.fromScriptTemplate(Opcode.OP_1, Opcode.OP_15)).toThrow('constraintHash supplied is not a hash buffer or OP_FALSE.');
-      expect(() => Address.fromScriptTemplate(BufferUtils.emptyBuffer(20), Opcode.OP_15)).toThrow('constraintHash supplied is not a hash buffer or OP_FALSE.');
+      expect(() => Address.fromScriptTemplate(Buffer.alloc(20), Opcode.OP_15)).toThrow('constraintHash supplied is not a hash buffer or OP_FALSE.');
 
-      expect(() => Address.fromScriptTemplate(BufferUtils.emptyBuffer(15), Opcode.OP_FALSE)).toThrow('templateHash supplied is not a hash buffer or well-known OP_1.');
-      expect(() => Address.fromScriptTemplate(BufferUtils.emptyBuffer(20), BufferUtils.emptyBuffer(15))).toThrow('constraintHash supplied is not a hash buffer or OP_FALSE.');
+      expect(() => Address.fromScriptTemplate(Buffer.alloc(15), Opcode.OP_FALSE)).toThrow('templateHash supplied is not a hash buffer or well-known OP_1.');
+      expect(() => Address.fromScriptTemplate(Buffer.alloc(20), Buffer.alloc(15))).toThrow('constraintHash supplied is not a hash buffer or OP_FALSE.');
     });
 
     test('should make this address from a compressed pubkey', () => {
@@ -367,11 +366,11 @@ describe('Address', () => {
   });
 
   test('should make address from script templates with visible args', () => {
-    let address = Address.fromScriptTemplate(BufferUtils.emptyBuffer(20), BufferUtils.emptyBuffer(20), [1,2]);
+    let address = Address.fromScriptTemplate(Buffer.alloc(20), Buffer.alloc(20), [1,2]);
     expect(address.toString()).toBe("nexa:nqksq9qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqypqpqmm07nk");
-    let address2 = Address.fromScriptTemplate(BufferUtils.emptyBuffer(20), BufferUtils.emptyBuffer(20), Script.fromBuffer(Buffer.from([1,2])));
+    let address2 = Address.fromScriptTemplate(Buffer.alloc(20), Buffer.alloc(20), Script.fromBuffer(Buffer.from([1,2])));
     expect(address2.toString()).toBe("nexa:nqksq9qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqypqpqmm07nk");
-    let address3 = Address.fromScriptTemplate(BufferUtils.emptyBuffer(20), BufferUtils.emptyBuffer(20), Buffer.from([1,2]).toString('hex'));
+    let address3 = Address.fromScriptTemplate(Buffer.alloc(20), Buffer.alloc(20), Buffer.from([1,2]).toString('hex'));
     expect(address3.toString()).toBe("nexa:nqksq9qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqypqpqmm07nk");
   });
 });

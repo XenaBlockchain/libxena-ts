@@ -112,6 +112,9 @@ export default class GroupToken {
     if (BufferUtils.isBuffer(group)) {
       return group;
     }
+    if (CommonUtils.isHexa(group)) {
+      return Buffer.from(group as string, 'hex');
+    }
     
     let groupAddress = new Address(group);
     ValidationUtils.validateArgument(groupAddress.isGroupIdentifierAddress(), 'Invalid group address');
@@ -146,6 +149,23 @@ export default class GroupToken {
     }
 
     return Buffer.concat([group, Buffer.from(data)]);
+  }
+
+  /**
+   * Extract the parent group from the provided subgroup.
+   * 
+   * @remarks
+   * If the input is a group but not subgroup, the group itself return.
+   * 
+   * @param subgroup the subgroup address or data buffer
+   * @returns the GroupId buffer
+   */
+  public static getParentGroupId(subgroup: Address | string | Buffer): Buffer {
+    let buf = this._getGroupAddressBuffer(subgroup);
+    if (buf.length < this.PARENT_GROUP_ID_SIZE) {
+      throw new Error("Invalid subgroup");
+    }
+    return Buffer.from(buf.subarray(0, 32));
   }
 
   /**

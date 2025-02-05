@@ -20,7 +20,7 @@ new BufferUtils(): BufferUtils
 
 ## Methods
 
-### fill()
+### ~~fill()~~
 
 ```ts
 static fill(buffer: Buffer, value: number): Buffer
@@ -41,9 +41,13 @@ Fill a buffer with a value.
 
 filled buffer
 
+#### Deprecated
+
+use `buffer.fill(value)`
+
 ***
 
-### copy()
+### ~~copy()~~
 
 ```ts
 static copy(original: Buffer): Buffer
@@ -60,6 +64,10 @@ static copy(original: Buffer): Buffer
 `Buffer`
 
 Return a copy of a buffer
+
+#### Deprecated
+
+use `Buffer.from(original) or Buffer.copyBytesFrom(original)`
 
 ***
 
@@ -107,7 +115,7 @@ Returns true if the given argument is an instance of a hash160 or hash256 buffer
 
 ***
 
-### emptyBuffer()
+### ~~emptyBuffer()~~
 
 ```ts
 static emptyBuffer(length: number): Buffer
@@ -124,6 +132,10 @@ Returns a zero-filled byte array
 #### Returns
 
 `Buffer`
+
+#### Deprecated
+
+use `Buffer.alloc(length)`
 
 ***
 

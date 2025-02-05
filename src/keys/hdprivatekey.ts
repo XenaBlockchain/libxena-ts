@@ -3,10 +3,11 @@ import HDKeyUtils from "./hdkey.utils";
 import { InvalidB58Checksum, InvalidDerivationArgument, InvalidEntropyArgument, InvalidPath, NotEnoughEntropy, TooMuchEntropy } from "./exceptions";
 import BufferUtils from "../utils/buffer.utils";
 import ValidationUtils from "../utils/validation.utils";
-import type { HDPrivateKeyBuffers, HDPrivateKeyDto, HDPrivateKeyMinimalDto, IHDPrivateKey, IPrivateKey, IPublicKey } from "../common/interfaces";
+import type { HDPrivateKeyBuffers, HDPrivateKeyDto, HDPrivateKeyMinimalDto, IHDPrivateKey } from "../common/interfaces";
 import type { Networkish } from "../common/types";
 import Hash from "../crypto/hash";
 import PrivateKey from "./privatekey";
+import type PublicKey from "./publickey";
 import BN from "../crypto/bn.extension";
 import Point from "../crypto/point";
 import type { Network } from "../core/network/network";
@@ -29,8 +30,8 @@ export default class HDPrivateKey implements IHDPrivateKey {
 
   private _hdPublicKey?: HDPublicKey;
 
-  readonly privateKey!: IPrivateKey;
-  readonly publicKey!: IPublicKey;
+  readonly privateKey!: PrivateKey;
+  readonly publicKey!: PublicKey;
   readonly network!: Network;
   readonly depth!: number;
   readonly parentFingerPrint!: Buffer;
@@ -52,8 +53,8 @@ export default class HDPrivateKey implements IHDPrivateKey {
 
     let params = HDPrivateKey._classifyArgument(arg);
 
-    this.privateKey = params.privateKey;
-    this.publicKey = params.publicKey ?? params.privateKey.toPublicKey();
+    this.privateKey = params.privateKey as PrivateKey;
+    this.publicKey = (params.publicKey ?? params.privateKey.toPublicKey()) as PublicKey;
     this.network = params.network;
     this.depth = params.depth;
     this.parentFingerPrint = params.parentFingerPrint;
@@ -376,7 +377,7 @@ export default class HDPrivateKey implements IHDPrivateKey {
 
     let sequence = [
       arg.version, arg.depth, arg.parentFingerPrint, arg.childIndex, arg.chainCode,
-      BufferUtils.emptyBuffer(1), arg.privateKey
+      Buffer.alloc(1), arg.privateKey
     ];
     let concat = Buffer.concat(sequence);
 

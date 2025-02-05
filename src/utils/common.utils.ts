@@ -8,7 +8,7 @@ export default class CommonUtils {
    * @param value
    * @returns true if the string is the hexa representation of a number
    */
-  public static isHexa(value: string): boolean {
+  public static isHexa(value: unknown): boolean {
     return isString(value) && value.length % 2 === 0 && /^[0-9a-fA-F]+$/.test(value);
   }
 

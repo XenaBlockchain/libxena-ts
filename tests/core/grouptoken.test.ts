@@ -61,6 +61,31 @@ describe("GroupToken", () => {
     });
   });
 
+  describe('#getParentGroupId', () => {
+    test("should fail if not token id buffer", () => {
+      expect(() => GroupToken.getParentGroupId(Buffer.alloc(20))).toThrow("Invalid subgroup");
+    });
+
+    let parent = "nexa:tr9v70v4s9s6jfwz32ts60zqmmkp50lqv7t0ux620d50xa7dhyqqqcg6kdm6f";
+    let parentHex = "cacf3d958161a925c28a970d3c40deec1a3fe06796fe1b4a7b68f377cdb90000";
+    let subgroup = "nexa:tr9v70v4s9s6jfwz32ts60zqmmkp50lqv7t0ux620d50xa7dhyqqp2juz4n4clw63scax5efugg0kgtl0f5rdvvpkmddclrjp8gfpgswkj7kwlhd";
+    let subgroupHex = "cacf3d958161a925c28a970d3c40deec1a3fe06796fe1b4a7b68f377cdb90000aa5c15675c7dda8c31d35329e210fb217f7a6836b181b6dadc7c7209d090a20e";
+
+    test("should return the same group if its parent", () => {
+      expect(GroupToken.getParentGroupId(parent).toString('hex')).toBe(parentHex);
+      expect(GroupToken.getParentGroupId(Address.fromString(parent)).toString('hex')).toBe(parentHex);
+      expect(GroupToken.getParentGroupId(Address.fromString(parent).data).toString('hex')).toBe(parentHex);
+      expect(GroupToken.getParentGroupId(parentHex).toString('hex')).toBe(parentHex);
+    });
+
+    test("should return the parent of the subgroup", () => {
+      expect(GroupToken.getParentGroupId(subgroup).toString('hex')).toBe(parentHex);
+      expect(GroupToken.getParentGroupId(Address.fromString(subgroup)).toString('hex')).toBe(parentHex);
+      expect(GroupToken.getParentGroupId(Address.fromString(subgroup).data).toString('hex')).toBe(parentHex);
+      expect(GroupToken.getParentGroupId(subgroupHex).toString('hex')).toBe(parentHex);
+    });
+  });
+
   describe('#getAmountBuffer/#getAmountValue', () => {
     test('should handle negative bigint values correctly', () => {
       let buf = GroupToken.getAmountBuffer(-1n);

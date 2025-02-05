@@ -1,6 +1,6 @@
 {
   "name": "libnexa-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A pure and powerful Nexa core library.",
   "type": "module",
   "source": "src/index.ts",
@@ -75,8 +75,8 @@
     "@types/bn.js": "^5.1.6",
     "@types/elliptic": "^6.4.18",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^22.12.0",
-    "@vitest/coverage-v8": "^3.0.4",
+    "@types/node": "^22.13.1",
+    "@vitest/coverage-v8": "^3.0.5",
     "del-cli": "^6.0.0",
     "eslint": "^9.19.0",
     "madge": "^8.0.0",
@@ -85,8 +85,8 @@
     "typedoc-plugin-markdown": "^4.4.1",
     "typedoc-plugin-rename-defaults": "^0.7.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0",
-    "vitest": "^3.0.4"
+    "typescript-eslint": "^8.23.0",
+    "vitest": "^3.0.5"
   },
   "@parcel/resolver-default": {
     "packageExports": true

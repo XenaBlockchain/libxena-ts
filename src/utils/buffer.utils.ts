@@ -9,21 +9,22 @@ export default class BufferUtils {
    * @param buffer
    * @param value
    * @return filled buffer
+   * 
+   * @deprecated use `buffer.fill(value)`
    */
   public static fill(buffer: Buffer, value: number): Buffer {
     ValidationUtils.validateArgumentType(buffer, 'Buffer', 'buffer');
     ValidationUtils.validateArgumentType(value, 'number', 'value');
 
-    for (let i = 0; i < buffer.length; i++) {
-      buffer[i] = value;
-    }
-    return buffer;
+    return buffer.fill(value);
   }
 
   /**
    *
    * @param original buffer
    * @return Return a copy of a buffer
+   * 
+   * @deprecated use `Buffer.from(original) or Buffer.copyBytesFrom(original)`
    */
   public static copy(original: Buffer): Buffer {
     let buffer = Buffer.alloc(original.length);
@@ -55,15 +56,12 @@ export default class BufferUtils {
    * Returns a zero-filled byte array
    *
    * @param length
+   * 
+   * @deprecated use `Buffer.alloc(length)`
    */
   public static emptyBuffer(length: number): Buffer {
     ValidationUtils.validateArgumentType(length, 'number', 'length');
-
-    let result = Buffer.alloc(length);
-    for (let i = 0; i < length; i++) {
-      result.write('\0', i);
-    }
-    return result;
+    return Buffer.alloc(length);
   }
 
   /**

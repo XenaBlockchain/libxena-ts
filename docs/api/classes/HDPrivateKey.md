@@ -41,8 +41,8 @@ More info on https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
 | Property | Modifier | Type |
 | ------ | ------ | ------ |
-| <a id="privatekey"></a> `privateKey` | `readonly` | [`IPrivateKey`](../interfaces/IPrivateKey.md) |
-| <a id="publickey"></a> `publicKey` | `readonly` | [`IPublicKey`](../interfaces/IPublicKey.md) |
+| <a id="privatekey"></a> `privateKey` | `readonly` | [`PrivateKey`](PrivateKey.md) |
+| <a id="publickey"></a> `publicKey` | `readonly` | [`PublicKey`](PublicKey.md) |
 | <a id="network"></a> `network` | `readonly` | [`Network`](Network.md) |
 | <a id="depth"></a> `depth` | `readonly` | `number` |
 | <a id="parentfingerprint"></a> `parentFingerPrint` | `readonly` | `Buffer` |
