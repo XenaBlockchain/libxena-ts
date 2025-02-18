@@ -15,14 +15,14 @@
 ### new Block()
 
 ```ts
-new Block(data: Buffer | IBlock): Block
+new Block(data: Buffer<ArrayBufferLike> | IBlock): Block
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `data` | `Buffer` \| [`IBlock`](../interfaces/IBlock.md) |
+| `data` | `Buffer`\<`ArrayBufferLike`\> \| [`IBlock`](../interfaces/IBlock.md) |
 
 #### Returns
 
@@ -211,14 +211,14 @@ A string formatted for the console
 ### getTransactionHashes()
 
 ```ts
-getTransactionHashes(): Buffer[]
+getTransactionHashes(): Buffer<ArrayBufferLike>[]
 ```
 
 Will iterate through each transaction and return an array of hashes
 
 #### Returns
 
-`Buffer`[]
+`Buffer`\<`ArrayBufferLike`\>[]
 
 An array with transaction hashes
 
@@ -227,7 +227,7 @@ An array with transaction hashes
 ### getMerkleTree()
 
 ```ts
-getMerkleTree(): Buffer[]
+getMerkleTree(): Buffer<ArrayBufferLike>[]
 ```
 
 Will build a merkle tree of all the transactions, ultimately arriving at
@@ -235,7 +235,7 @@ a single point, the merkle root.
 
 #### Returns
 
-`Buffer`[]
+`Buffer`\<`ArrayBufferLike`\>[]
 
 An array with each level of the tree after the other.
 

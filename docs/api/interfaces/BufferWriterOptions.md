@@ -10,4 +10,4 @@
 
 | Property | Type |
 | ------ | ------ |
-| <a id="bufs"></a> `bufs?` | `Buffer`[] |
+| <a id="bufs"></a> `bufs?` | `Buffer`\<`ArrayBufferLike`\>[] |

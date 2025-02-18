@@ -93,11 +93,15 @@ describe("Transaction", () => {
       output: new Output(1004098n, "00511431011a39884b2f6f46445787661d73cadd4726df", OutputType.TEMPLATE)
     }));
     tx.addOutput(new Output(99640n, "0051147c3c698ab7d549fd2111a4015515aa78ac7098e9", OutputType.TEMPLATE));
+    expect(tx.estimateRequiredFee()).toBeLessThan(tx.getFee());
+    
     tx.setChangeOutput("nexa:nqtsq5g5qghjhf90wwd48rkdeqpka24rwgemax86uhhhxmge");
     expect(tx.getFee()).toBe(657);
+    expect(tx.getFee()).toBe(tx.estimateRequiredFee());
 
     tx.setFeePerByte(1);
     expect(tx.getFee()).toBe(219);
+    expect(tx.getFee()).toBe(tx.estimateRequiredFee());
 
     tx = new Transaction();
     for(let i = 0; i < 255; i++) {

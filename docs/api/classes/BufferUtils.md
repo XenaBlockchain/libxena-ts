@@ -74,7 +74,7 @@ use `Buffer.from(original) or Buffer.copyBytesFrom(original)`
 ### isBuffer()
 
 ```ts
-static isBuffer(arg: unknown): arg is Buffer
+static isBuffer(arg: unknown): arg is Buffer<ArrayBufferLike>
 ```
 
 Tests for both node's Buffer and Uint8Array
@@ -87,7 +87,7 @@ Tests for both node's Buffer and Uint8Array
 
 #### Returns
 
-`arg is Buffer`
+`arg is Buffer<ArrayBufferLike>`
 
 Returns true if the given argument is an instance of a buffer.
 

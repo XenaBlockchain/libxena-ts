@@ -10,6 +10,6 @@
 
 | Property | Type |
 | ------ | ------ |
-| <a id="buf"></a> `buf?` | `Buffer` |
+| <a id="buf"></a> `buf?` | `Buffer`\<`ArrayBufferLike`\> |
 | <a id="len"></a> `len?` | `number` |
 | <a id="opcodenum"></a> `opcodenum` | `number` |

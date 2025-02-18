@@ -17,14 +17,17 @@ Represents a transaction, a set of inputs and outputs to change ownership of tok
 ### new Transaction()
 
 ```ts
-new Transaction(serializedTx?: string | Buffer | ITransaction): Transaction
+new Transaction(serializedTx?: 
+  | string
+  | Buffer<ArrayBufferLike>
+  | ITransaction): Transaction
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `serializedTx`? | `string` \| `Buffer` \| [`ITransaction`](../interfaces/ITransaction.md) |
+| `serializedTx`? | \| `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`ITransaction`](../interfaces/ITransaction.md) |
 
 #### Returns
 
@@ -233,6 +236,27 @@ estimate the fee based on size.
 `number`
 
 fee of this transaction in satoshis
+
+***
+
+### estimateRequiredFee()
+
+```ts
+estimateRequiredFee(): number
+```
+
+Calculates the required fee of the transaction.
+
+#### Returns
+
+`number`
+
+the required fees of this transaction in satoshis
+
+#### Remarks
+
+this method is different than getFee.
+ while getFee return the current fee estimation, this method return how much fee is required according to the fee rate.
 
 ***
 
@@ -526,7 +550,10 @@ this, for chaining
 ```ts
 addInput(
    input: Input, 
-   outputScript?: string | Buffer | IScript, 
+   outputScript?: 
+  | string
+  | Buffer<ArrayBufferLike>
+  | IScript, 
    amount?: number | bigint): this
 ```
 
@@ -539,7 +566,7 @@ set, two additional parameters, `outputScript` and `amount` can be provided.
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `input` | [`Input`](Input.md) |  |
-| `outputScript`? | `string` \| `Buffer` \| [`IScript`](../interfaces/IScript.md) |  |
+| `outputScript`? | \| `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`IScript`](../interfaces/IScript.md) |  |
 | `amount`? | `number` \| `bigint` |  |
 
 #### Returns

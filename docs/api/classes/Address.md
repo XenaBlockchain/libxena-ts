@@ -12,7 +12,7 @@
 
 ```ts
 new Address(
-   data: string | Buffer | Address, 
+   data: string | Buffer<ArrayBufferLike> | Address, 
    network?: Networkish, 
    type?: AddressType): Address
 ```
@@ -33,7 +33,7 @@ You can quickly check whether an address is of a given kind by using the methods
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `data` | `string` \| `Buffer` \| [`Address`](Address.md) | The encoded data in various formats |
+| `data` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | The encoded data in various formats |
 | `network`? | [`Networkish`](../type-aliases/Networkish.md) | The network: 'mainnet' (default) or 'testnet' |
 | `type`? | [`AddressType`](../enumerations/AddressType.md) | The type of address: 'P2ST' (default) or 'P2PKH' or 'GROUP' |
 
@@ -155,7 +155,7 @@ A new valid instance of an Address
 
 ```ts
 static getValidationError(
-   data: string | Buffer, 
+   data: string | Buffer<ArrayBufferLike>, 
    network?: Networkish, 
    type?: AddressType): undefined | Error
 ```
@@ -166,7 +166,7 @@ Will return a validation error if exists
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `data` | `string` \| `Buffer` | The encoded data |
+| `data` | `string` \| `Buffer`\<`ArrayBufferLike`\> | The encoded data |
 | `network`? | [`Networkish`](../type-aliases/Networkish.md) | either a Network instance, 'mainnet', or 'testnet' |
 | `type`? | [`AddressType`](../enumerations/AddressType.md) | The type of address: 'P2ST' or 'GROUP' or 'P2PKH' |
 
@@ -189,7 +189,7 @@ let error = Address.getValidationError('nexatest:nqtsq5g567x44x5g54t2wsxz60zwqmy
 
 ```ts
 static isValid(
-   data: string | Buffer, 
+   data: string | Buffer<ArrayBufferLike>, 
    network?: Networkish, 
    type?: AddressType): boolean
 ```
@@ -200,7 +200,7 @@ Will return a boolean if an address is valid
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `data` | `string` \| `Buffer` | The encoded data |
+| `data` | `string` \| `Buffer`\<`ArrayBufferLike`\> | The encoded data |
 | `network`? | [`Networkish`](../type-aliases/Networkish.md) | either a Network instance, 'mainnet', or 'testnet' |
 | `type`? | [`AddressType`](../enumerations/AddressType.md) | The type of address: 'P2ST' or 'GROUP' or 'P2PKH' |
 
@@ -249,8 +249,8 @@ A new valid and frozen instance of an Address
 
 ```ts
 static fromScriptTemplate(
-   templateHash: Buffer | Opcode, 
-   constraintHash: Buffer | Opcode, 
+   templateHash: Buffer<ArrayBufferLike> | Opcode, 
+   constraintHash: Buffer<ArrayBufferLike> | Opcode, 
    visibleArgs?: 
   | string
   | Script
@@ -264,8 +264,8 @@ Instantiate an address from a non grouped script template
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `templateHash` | `Buffer` \| [`Opcode`](../enumerations/Opcode.md) | An instance of a template hash Buffer |
-| `constraintHash` | `Buffer` \| [`Opcode`](../enumerations/Opcode.md) | An instance of a constraint hash Buffer |
+| `templateHash` | `Buffer`\<`ArrayBufferLike`\> \| [`Opcode`](../enumerations/Opcode.md) | An instance of a template hash Buffer |
+| `constraintHash` | `Buffer`\<`ArrayBufferLike`\> \| [`Opcode`](../enumerations/Opcode.md) | An instance of a constraint hash Buffer |
 | `visibleArgs`? | \| `string` \| [`Script`](Script.md) \| [`ScriptElement`](../type-aliases/ScriptElement.md)[] | An array of push-only args, or hex string represent script buffer, or Script with push args |
 | `network`? | [`Networkish`](../type-aliases/Networkish.md) | either a Network instance, 'mainnet' or 'testnet' |
 

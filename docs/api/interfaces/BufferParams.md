@@ -10,5 +10,5 @@
 
 | Property | Type |
 | ------ | ------ |
-| <a id="buf"></a> `buf?` | `Buffer` |
+| <a id="buf"></a> `buf?` | `Buffer`\<`ArrayBufferLike`\> |
 | <a id="pos"></a> `pos?` | `number` |
