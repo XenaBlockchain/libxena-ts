@@ -11,14 +11,17 @@
 ### new TransactionBuilder()
 
 ```ts
-new TransactionBuilder(tx?: string | Buffer | ITransaction): TransactionBuilder
+new TransactionBuilder(tx?: 
+  | string
+  | Buffer<ArrayBufferLike>
+  | ITransaction): TransactionBuilder
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `tx`? | `string` \| `Buffer` \| [`ITransaction`](../interfaces/ITransaction.md) |
+| `tx`? | \| `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`ITransaction`](../interfaces/ITransaction.md) |
 
 #### Returns
 
@@ -149,7 +152,7 @@ if sending token, the nexa amount is usually [Transaction.DUST\_AMOUNT](Transact
 ### addData()
 
 ```ts
-addData(data: string | Buffer | Script, isFullScript: boolean): this
+addData(data: string | Buffer<ArrayBufferLike> | Script, isFullScript: boolean): this
 ```
 
 Add an OP_RETURN output to the transaction.
@@ -160,7 +163,7 @@ Beware that this resets all the signatures for inputs.
 
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| `data` | `string` \| `Buffer` \| [`Script`](Script.md) | `undefined` | the data to be stored in the OP_RETURN output. In case of a string, the UTF-8 representation will be stored |
+| `data` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Script`](Script.md) | `undefined` | the data to be stored in the OP_RETURN output. In case of a string, the UTF-8 representation will be stored |
 | `isFullScript` | `boolean` | `false` | if the provided data is already an op_return script. default false. |
 
 #### Returns

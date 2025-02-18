@@ -17,7 +17,7 @@
 ```ts
 new HDPublicKey(arg: 
   | string
-  | Buffer
+  | Buffer<ArrayBufferLike>
   | IHDPrivateKey
   | IHDPublicKey
   | HDPublicKeyDto
@@ -32,7 +32,7 @@ See https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `arg` | \| `string` \| `Buffer` \| [`IHDPrivateKey`](../interfaces/IHDPrivateKey.md) \| [`IHDPublicKey`](../interfaces/IHDPublicKey.md) \| [`HDPublicKeyDto`](../interfaces/HDPublicKeyDto.md) \| [`HDPublicKeyMinimalDto`](../type-aliases/HDPublicKeyMinimalDto.md) |  |
+| `arg` | \| `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`IHDPrivateKey`](../interfaces/IHDPrivateKey.md) \| [`IHDPublicKey`](../interfaces/IHDPublicKey.md) \| [`HDPublicKeyDto`](../interfaces/HDPublicKeyDto.md) \| [`HDPublicKeyMinimalDto`](../type-aliases/HDPublicKeyMinimalDto.md) |  |
 
 #### Returns
 

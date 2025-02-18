@@ -15,14 +15,16 @@
 ### new BlockHeader()
 
 ```ts
-new BlockHeader(data: Buffer | IBlockHeader): BlockHeader
+new BlockHeader(data: 
+  | Buffer<ArrayBufferLike>
+  | IBlockHeader): BlockHeader
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `data` | `Buffer` \| [`IBlockHeader`](../interfaces/IBlockHeader.md) |
+| `data` | \| `Buffer`\<`ArrayBufferLike`\> \| [`IBlockHeader`](../interfaces/IBlockHeader.md) |
 
 #### Returns
 

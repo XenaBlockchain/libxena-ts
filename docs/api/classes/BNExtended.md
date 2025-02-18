@@ -16,7 +16,13 @@
 
 ```ts
 new BNExtended(
-   number: string | number | Buffer | Uint8Array | number[] | BN, 
+   number: 
+  | string
+  | number
+  | Buffer<ArrayBufferLike>
+  | Uint8Array<ArrayBufferLike>
+  | number[]
+  | BN, 
    base?: number | "hex", 
    endian?: Endianness): BNExtended
 ```
@@ -25,7 +31,7 @@ new BNExtended(
 
 | Parameter | Type |
 | ------ | ------ |
-| `number` | `string` \| `number` \| `Buffer` \| `Uint8Array` \| `number`[] \| `BN` |
+| `number` | \| `string` \| `number` \| `Buffer`\<`ArrayBufferLike`\> \| `Uint8Array`\<`ArrayBufferLike`\> \| `number`[] \| `BN` |
 | `base`? | `number` \| `"hex"` |
 | `endian`? | `Endianness` |
 
@@ -42,14 +48,20 @@ BN.constructor
 ### new BNExtended()
 
 ```ts
-new BNExtended(number: string | number | Buffer | Uint8Array | number[] | BN, endian?: Endianness): BNExtended
+new BNExtended(number: 
+  | string
+  | number
+  | Buffer<ArrayBufferLike>
+  | Uint8Array<ArrayBufferLike>
+  | number[]
+  | BN, endian?: Endianness): BNExtended
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `number` | `string` \| `number` \| `Buffer` \| `Uint8Array` \| `number`[] \| `BN` |
+| `number` | \| `string` \| `number` \| `Buffer`\<`ArrayBufferLike`\> \| `Uint8Array`\<`ArrayBufferLike`\> \| `number`[] \| `BN` |
 | `endian`? | `Endianness` |
 
 #### Returns

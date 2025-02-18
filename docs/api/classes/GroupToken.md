@@ -43,8 +43,8 @@ new GroupToken(): GroupToken
 
 ```ts
 static findGroupId(
-   outpoint: string | Buffer, 
-   opReturnScript: null | Buffer | Script, 
+   outpoint: string | Buffer<ArrayBufferLike>, 
+   opReturnScript: null | Buffer<ArrayBufferLike> | Script, 
    authFlag: bigint, 
    idFlag: GroupIdFlag): GroupIdData
 ```
@@ -56,8 +56,8 @@ going to be an OP_RETURN output in the transaction.
 
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| `outpoint` | `string` \| `Buffer` | `undefined` | The input outpoint hash hex or buffer |
-| `opReturnScript` | `null` \| `Buffer` \| [`Script`](Script.md) | `undefined` | opReturn output script |
+| `outpoint` | `string` \| `Buffer`\<`ArrayBufferLike`\> | `undefined` | The input outpoint hash hex or buffer |
+| `opReturnScript` | `null` \| `Buffer`\<`ArrayBufferLike`\> \| [`Script`](Script.md) | `undefined` | opReturn output script |
 | `authFlag` | `bigint` | `undefined` | group authority flag (use [GroupToken.authFlags](GroupToken.md#authflags)) |
 | `idFlag` | [`GroupIdFlag`](../enumerations/GroupIdFlag.md) | `GroupIdFlag.DEFAULT` | group id flag |
 
@@ -72,7 +72,7 @@ Object with group id hash buffer and the nonce bigint
 ### generateSubgroupId()
 
 ```ts
-static generateSubgroupId(group: string | Buffer | Address, data: string | number | Buffer): Buffer
+static generateSubgroupId(group: string | Buffer<ArrayBufferLike> | Address, data: string | number | Buffer<ArrayBufferLike>): Buffer
 ```
 
 Translates a group and additional data into a subgroup identifier
@@ -81,8 +81,8 @@ Translates a group and additional data into a subgroup identifier
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `group` | `string` \| `Buffer` \| [`Address`](Address.md) | the group/token address or data buffer |
-| `data` | `string` \| `number` \| `Buffer` | the additional data |
+| `group` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | the group/token address or data buffer |
+| `data` | `string` \| `number` \| `Buffer`\<`ArrayBufferLike`\> | the additional data |
 
 #### Returns
 
@@ -95,7 +95,7 @@ the subgroup id buffer
 ### getParentGroupId()
 
 ```ts
-static getParentGroupId(subgroup: string | Buffer | Address): Buffer
+static getParentGroupId(subgroup: string | Buffer<ArrayBufferLike> | Address): Buffer
 ```
 
 Extract the parent group from the provided subgroup.
@@ -104,7 +104,7 @@ Extract the parent group from the provided subgroup.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `subgroup` | `string` \| `Buffer` \| [`Address`](Address.md) | the subgroup address or data buffer |
+| `subgroup` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | the subgroup address or data buffer |
 
 #### Returns
 
@@ -182,7 +182,7 @@ the nonce
 ### hasIdFlag()
 
 ```ts
-static hasIdFlag(groupId: string | Buffer | Address, groupIdFlag: GroupIdFlag): boolean
+static hasIdFlag(groupId: string | Buffer<ArrayBufferLike> | Address, groupIdFlag: GroupIdFlag): boolean
 ```
 
 Check if the group id has the flag
@@ -191,7 +191,7 @@ Check if the group id has the flag
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `groupId` | `string` \| `Buffer` \| [`Address`](Address.md) | the group id address or data buffer |
+| `groupId` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | the group id address or data buffer |
 | `groupIdFlag` | [`GroupIdFlag`](../enumerations/GroupIdFlag.md) | the group id flag |
 
 #### Returns
@@ -206,7 +206,7 @@ true if this group id has the flag
 
 ```ts
 static isGroupCreation(
-   groupId: string | Buffer | Address, 
+   groupId: string | Buffer<ArrayBufferLike> | Address, 
    authFlag: bigint, 
    groupIdFlag: GroupIdFlag): boolean
 ```
@@ -217,7 +217,7 @@ Check if this authority and flag fit to this group creation
 
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| `groupId` | `string` \| `Buffer` \| [`Address`](Address.md) | `undefined` | the group id address or data buffer |
+| `groupId` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | `undefined` | the group id address or data buffer |
 | `authFlag` | `bigint` | `undefined` | the output group quantity/authority |
 | `groupIdFlag` | [`GroupIdFlag`](../enumerations/GroupIdFlag.md) | `GroupIdFlag.DEFAULT` | optional. the group id flag |
 
@@ -232,7 +232,7 @@ true if this is group creation data
 ### isSubgroup()
 
 ```ts
-static isSubgroup(groupId: string | Buffer | Address): boolean
+static isSubgroup(groupId: string | Buffer<ArrayBufferLike> | Address): boolean
 ```
 
 Check if this group is is subgroup
@@ -241,7 +241,7 @@ Check if this group is is subgroup
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `groupId` | `string` \| `Buffer` \| [`Address`](Address.md) | the group id address or data buffer |
+| `groupId` | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | the group id address or data buffer |
 
 #### Returns
 

@@ -194,14 +194,14 @@ toBuffer(isSchnorr: boolean): Buffer
 ### toTxFormat()
 
 ```ts
-toTxFormat(sighashBuf?: Buffer): Buffer
+toTxFormat(sighashBuf?: Buffer<ArrayBufferLike>): Buffer
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `sighashBuf`? | `Buffer` |
+| `sighashBuf`? | `Buffer`\<`ArrayBufferLike`\> |
 
 #### Returns
 

@@ -11,7 +11,7 @@
 | Property | Type |
 | ------ | ------ |
 | <a id="type"></a> `type?` | `number` |
-| <a id="outpoint"></a> `outpoint` | `string` \| `Buffer` |
+| <a id="outpoint"></a> `outpoint` | `string` \| `Buffer`\<`ArrayBufferLike`\> |
 | <a id="scriptsig"></a> `scriptSig` | `string` \| [`Script`](../classes/Script.md) |
 | <a id="amount"></a> `amount` | `string` \| `bigint` |
 | <a id="sequencenumber"></a> `sequenceNumber?` | `number` |

@@ -11,14 +11,17 @@
 ### new BufferReader()
 
 ```ts
-new BufferReader(buf?: string | Buffer | BufferParams): BufferReader
+new BufferReader(buf?: 
+  | string
+  | Buffer<ArrayBufferLike>
+  | BufferParams): BufferReader
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `buf`? | `string` \| `Buffer` \| [`BufferParams`](../interfaces/BufferParams.md) |
+| `buf`? | \| `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`BufferParams`](../interfaces/BufferParams.md) |
 
 #### Returns
 

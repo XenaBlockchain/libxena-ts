@@ -22,14 +22,17 @@ has a script that is evaluated to validate it's spending.
 ### new Script()
 
 ```ts
-new Script(from?: string | Buffer | IScript): Script
+new Script(from?: 
+  | string
+  | Buffer<ArrayBufferLike>
+  | IScript): Script
 ```
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `from`? | `string` \| `Buffer` \| [`IScript`](../interfaces/IScript.md) |
+| `from`? | \| `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`IScript`](../interfaces/IScript.md) |
 
 #### Returns
 
@@ -511,14 +514,17 @@ Will retrieve the Public Key Hash buffer from p2pkh output scriptPubKey
 ### getTemplateHash()
 
 ```ts
-getTemplateHash(): Buffer | OP_TRUE
+getTemplateHash(): 
+  | Buffer<ArrayBufferLike>
+  | OP_TRUE
 ```
 
 Will retrieve the Template Hash from p2pkt/p2st output scriptPubKey
 
 #### Returns
 
-`Buffer` \| [`OP_TRUE`](../enumerations/Opcode.md#op_true)
+  \| `Buffer`\<`ArrayBufferLike`\>
+  \| [`OP_TRUE`](../enumerations/Opcode.md#op_true)
 
 OP_1 if its p2pkt, otherwise the template hash buffer
 
@@ -527,14 +533,17 @@ OP_1 if its p2pkt, otherwise the template hash buffer
 ### getConstraintHash()
 
 ```ts
-getConstraintHash(): Buffer | OP_FALSE
+getConstraintHash(): 
+  | Buffer<ArrayBufferLike>
+  | OP_FALSE
 ```
 
 Will retrieve the Constraint Hash from p2pkt/p2st output scriptPubKey
 
 #### Returns
 
-`Buffer` \| [`OP_FALSE`](../enumerations/Opcode.md#op_false)
+  \| `Buffer`\<`ArrayBufferLike`\>
+  \| [`OP_FALSE`](../enumerations/Opcode.md#op_false)
 
 The constraint hash buffer, or OP_FALSE if not included
 

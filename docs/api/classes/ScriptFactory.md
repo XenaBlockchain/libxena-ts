@@ -27,8 +27,8 @@ new ScriptFactory(): ScriptFactory
 ```ts
 static buildScriptTemplateOut(
    to: string | PublicKey | Address, 
-   groupId?: string | Buffer | Address, 
-   groupAmount?: bigint | Buffer): Script
+   groupId?: string | Buffer<ArrayBufferLike> | Address, 
+   groupAmount?: bigint | Buffer<ArrayBufferLike>): Script
 ```
 
 #### Parameters
@@ -36,8 +36,8 @@ static buildScriptTemplateOut(
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `to` | `string` \| [`PublicKey`](PublicKey.md) \| [`Address`](Address.md) | destination address or public key |
-| `groupId`? | `string` \| `Buffer` \| [`Address`](Address.md) | group id buffer or group address or hex id - only if its token output script |
-| `groupAmount`? | `bigint` \| `Buffer` | optional. quantity amount buffer or bigint - only if its token output script |
+| `groupId`? | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | group id buffer or group address or hex id - only if its token output script |
+| `groupAmount`? | `bigint` \| `Buffer`\<`ArrayBufferLike`\> | optional. quantity amount buffer or bigint - only if its token output script |
 
 #### Returns
 
@@ -50,14 +50,14 @@ a new pay to public key / script template output for the given address or public
 ### buildDataOut()
 
 ```ts
-static buildDataOut(data?: string | Buffer | Script, encoding?: BufferEncoding): Script
+static buildDataOut(data?: string | Buffer<ArrayBufferLike> | Script, encoding?: BufferEncoding): Script
 ```
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `data`? | `string` \| `Buffer` \| [`Script`](Script.md) | the data to embed in the output |
+| `data`? | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Script`](Script.md) | the data to embed in the output |
 | `encoding`? | `BufferEncoding` | the type of encoding of the string |
 
 #### Returns
@@ -73,8 +73,8 @@ a new OP_RETURN script with data
 ```ts
 static buildOutFromAddress(
    address: string | Address, 
-   groupId?: string | Buffer | Address, 
-   groupAmount?: bigint | Buffer): Script
+   groupId?: string | Buffer<ArrayBufferLike> | Address, 
+   groupAmount?: bigint | Buffer<ArrayBufferLike>): Script
 ```
 
 #### Parameters
@@ -82,8 +82,8 @@ static buildOutFromAddress(
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `address` | `string` \| [`Address`](Address.md) | the pay to address |
-| `groupId`? | `string` \| `Buffer` \| [`Address`](Address.md) | optional. only for p2st addresses |
-| `groupAmount`? | `bigint` \| `Buffer` | optional. only for p2st addresses |
+| `groupId`? | `string` \| `Buffer`\<`ArrayBufferLike`\> \| [`Address`](Address.md) | optional. only for p2st addresses |
+| `groupAmount`? | `bigint` \| `Buffer`\<`ArrayBufferLike`\> | optional. only for p2st addresses |
 
 #### Returns
 
@@ -99,7 +99,7 @@ an output script built from the address
 static buildScriptTemplateIn(
    template: Opcode | Script, 
    constraint: Opcode | Script, 
-   satisfier: Buffer | Script): Script
+   satisfier: Buffer<ArrayBufferLike> | Script): Script
 ```
 
 Builds a scriptSig (a script for an input) that signs a script template
@@ -111,7 +111,7 @@ output script.
 | ------ | ------ | ------ |
 | `template` | [`Opcode`](../enumerations/Opcode.md) \| [`Script`](Script.md) | the template script or OP_1 for well-known |
 | `constraint` | [`Opcode`](../enumerations/Opcode.md) \| [`Script`](Script.md) | the constraint script or OP_FALSE |
-| `satisfier` | `Buffer` \| [`Script`](Script.md) | the satisfier script or buffer |
+| `satisfier` | `Buffer`\<`ArrayBufferLike`\> \| [`Script`](Script.md) | the satisfier script or buffer |
 
 #### Returns
 
@@ -143,7 +143,7 @@ address or public key
 ### buildPublicKeyHashIn()
 
 ```ts
-static buildPublicKeyHashIn(publicKey: PublicKey, signature: Buffer | Signature): Script
+static buildPublicKeyHashIn(publicKey: PublicKey, signature: Buffer<ArrayBufferLike> | Signature): Script
 ```
 
 Builds a scriptSig (a script for an input) that signs a public key hash
@@ -154,7 +154,7 @@ output script. (SIGHASH_ALL only)
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `publicKey` | [`PublicKey`](PublicKey.md) |  |
-| `signature` | `Buffer` \| [`Signature`](Signature.md) | a Signature object, or the signature in DER canonical encoding |
+| `signature` | `Buffer`\<`ArrayBufferLike`\> \| [`Signature`](Signature.md) | a Signature object, or the signature in DER canonical encoding |
 
 #### Returns
 

@@ -262,6 +262,19 @@ export default class Transaction implements ITransaction {
     return this._estimateFee();
   }
 
+  /**
+   * Calculates the required fee of the transaction.
+   * 
+   * @remarks this method is different than getFee.
+   *  while getFee return the current fee estimation, this method return how much fee is required according to the fee rate.
+   * 
+   * @returns the required fees of this transaction in satoshis
+   */
+  public estimateRequiredFee(): number {
+    let feeRate = this._feePerByte || Transaction.FEE_PER_BYTE;
+    return feeRate * this._estimateSize();
+  }
+
   public clearSignatures(): void {
     this.inputs.forEach(input => input.clearSignatures());
   }

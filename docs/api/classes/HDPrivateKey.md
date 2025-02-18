@@ -16,7 +16,7 @@
 
 ```ts
 new HDPrivateKey(arg?: 
-  | Buffer
+  | Buffer<ArrayBufferLike>
   | Networkish
   | IHDPrivateKey
   | HDPrivateKeyDto
@@ -31,7 +31,7 @@ More info on https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
 | Parameter | Type |
 | ------ | ------ |
-| `arg`? | \| `Buffer` \| [`Networkish`](../type-aliases/Networkish.md) \| [`IHDPrivateKey`](../interfaces/IHDPrivateKey.md) \| [`HDPrivateKeyDto`](../interfaces/HDPrivateKeyDto.md) \| [`HDPrivateKeyMinimalDto`](../type-aliases/HDPrivateKeyMinimalDto.md) |
+| `arg`? | \| `Buffer`\<`ArrayBufferLike`\> \| [`Networkish`](../type-aliases/Networkish.md) \| [`IHDPrivateKey`](../interfaces/IHDPrivateKey.md) \| [`HDPrivateKeyDto`](../interfaces/HDPrivateKeyDto.md) \| [`HDPrivateKeyMinimalDto`](../type-aliases/HDPrivateKeyMinimalDto.md) |
 
 #### Returns
 
@@ -181,7 +181,7 @@ static fromMinimalObject(arg: HDPrivateKeyMinimalDto): HDPrivateKey
 ### fromSeed()
 
 ```ts
-static fromSeed(seed: string | Buffer, network: Networkish): HDPrivateKey
+static fromSeed(seed: string | Buffer<ArrayBufferLike>, network: Networkish): HDPrivateKey
 ```
 
 Generate a private key from a seed, as described in BIP32
@@ -190,7 +190,7 @@ Generate a private key from a seed, as described in BIP32
 
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| `seed` | `string` \| `Buffer` | `undefined` |  |
+| `seed` | `string` \| `Buffer`\<`ArrayBufferLike`\> | `undefined` |  |
 | `network` | [`Networkish`](../type-aliases/Networkish.md) | `networks.defaultNetwork` |  |
 
 #### Returns
