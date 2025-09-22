@@ -16,7 +16,7 @@ interface AddressParts {
 
 export default class AddressFormatter {
 
-  private static readonly VALID_PREFIXES = ['nexa', 'nexatest'];
+  private static readonly VALID_PREFIXES = ['xena', 'xenatest'];
   
   /** @see encodeAddress */
   public static encode(prefix: string, type: AddressType, data: Buffer): string {

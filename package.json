@@ -1,7 +1,7 @@
 {
-  "name": "libnexa-ts",
+  "name": "libxena-ts",
   "version": "1.0.5",
-  "description": "A pure and powerful Nexa SDK library.",
+  "description": "A powerful Xena SDK library.",
   "type": "module",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
@@ -53,12 +53,14 @@
     "docs": "typedoc"
   },
   "keywords": [
-    "nexa",
-    "blockchain"
+    "xena",
+    "blockchain",
+    "ai",
+    "crypto"
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/nexa/libnexa-ts"
+    "url": "https://github.com/XenaBlockchain/libxena-ts"
   },
   "author": "vgrunner",
   "license": "MIT",

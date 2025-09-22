@@ -36,7 +36,7 @@ export class Network {
 export const liveNetwork = new Network({
   name: 'mainnet',
   alias: 'livenet',
-  prefix: 'nexa',
+  prefix: 'xena',
   pubkeyhash: 0x19,
   privatekey: 0x23,
   scripthash: 0x44,
@@ -54,7 +54,7 @@ export const liveNetwork = new Network({
 export const testNetwork = new Network({
   name: 'testnet',
   alias: 'testnet',
-  prefix: 'nexatest',
+  prefix: 'xenatest',
   pubkeyhash: 0x6f,
   privatekey: 0xef,
   scripthash: 0xc4,
